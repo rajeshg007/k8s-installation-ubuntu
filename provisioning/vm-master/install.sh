@@ -41,3 +41,9 @@ cat >>/etc/hosts<<EOF
 EOF
 systemctl restart nfs-kernel-server
 exportfs -a
+
+
+echo "[TASK 8] Create Join Token"
+figlet JOIN Token
+join_command = "$(kubeadm token create --print-join-command)"
+echo  "${join_command}"
