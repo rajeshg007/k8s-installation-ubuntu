@@ -46,3 +46,8 @@ echo "[TASK 8] Create Join Token"
 figlet JOIN Token
 join_command = "$(kubeadm token create --print-join-command)"
 echo  "${join_command}"
+
+echo "[TASK 9] Dashboard URL"
+figlet Dashboard URL
+ipaddress="$(dig +short myip.opendns.com @resolver1.opendns.com)"
+echo "http://${ipaddress}:30070/"
