@@ -5,12 +5,7 @@ apt-get install figlet -y
 figlet PREREQUISITES
 
 echo "[TASK 1] Add hosts to etc/hosts"
-cat >>/etc/hosts<<EOF
-100.10.10.100 k8s-master
-100.10.10.101 k8s-worker-1
-100.10.10.102 k8s-worker-2
-100.10.10.103 k8s-worker-3
-EOF
+echo $(hostname -i) $(hostname) | sudo tee -a /etc/hosts
 
 echo "[TASK 2] Disable Swap"
 swapoff -a && sed -i '/swap/d' /etc/fstab
@@ -32,3 +27,6 @@ echo "[TASK 6] Install kubelet/kubeadm/kubectl"
 apt-get update -y
 apt-get install -y kubelet kubeadm kubectl 
 sed -i 's/cgroup-driver=systemd/cgroup-driver=cgroupfs/g' /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+echo "[TASK 7] Install nfs Common"
+apt-get install -y nfs-common

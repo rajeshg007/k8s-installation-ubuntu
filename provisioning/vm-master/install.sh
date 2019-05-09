@@ -33,7 +33,6 @@ kubectl get services -n kube-system
 echo "[TASK 7] Setup NFS"
 figlet NFS
 apt-get install -y nfs-kernel-server
-apt-get install -y nfs-common
 
 mkdir -p /mnt/storage
 cat >>/etc/hosts<<EOF
